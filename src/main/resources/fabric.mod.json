@@ -1,0 +1,28 @@
+{
+	"schemaVersion": 1,
+	"id": "fluid-lib",
+	"version": "${modVersion}",
+	"name": "Fluid Lib",
+	"description": "Makes it easier for mod developers to add custom fluids",
+	"authors": [
+		"OffsetMonkey538"
+	],
+	"contact": {
+		"sources": "https://github.offsetmonkey538.top/fluid-lib"
+	},
+	"license": "MIT",
+	"icon": "assets/fluid-lib/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"preLaunch": [
+			"com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
+		]
+	},
+	"mixins": [
+		"fluid-lib.mixins.json"
+	],
+	"accessWidener": "fluid-lib.accesswidener",
+	"depends": {
+		"minecraft": "${supportedMinecraftVersions}"
+	}
+}
