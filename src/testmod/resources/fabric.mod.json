@@ -1,0 +1,20 @@
+{
+	"schemaVersion": 1,
+	"id": "testmod",
+	"version": "testing",
+	"name": "Testing",
+	"description": "",
+	"authors": [
+		"OffsetMonkey538"
+	],
+	"contact": {
+		"sources": "https://github.offsetmonkey538.top/fluid-lib"
+	},
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"testing.Testing"
+		]
+	}
+}

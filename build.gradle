@@ -30,10 +30,12 @@ loom {
 	mods {
 		modid {
 			sourceSet sourceSets.main
+		}
+		testmod {
 			sourceSet sourceSets.testmod
 		}
 	}
-	
+	createRemapConfigurations(sourceSets.testmod)
 	accessWidenerPath = file("src/main/resources/fluid-lib.accesswidener")
 }
 
@@ -64,6 +66,12 @@ dependencies {
 	// Mixin Extras
 	includeImplementation "com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}"
 	annotationProcessor   "com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}"
+
+
+
+	testmodImplementation sourceSets.main.output
+
+	modTestmodImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
 processResources {
