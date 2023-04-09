@@ -28,6 +28,9 @@ public class DataGeneration implements DataGeneratorEntrypoint {
         protected void configure(RegistryWrapper.WrapperLookup arg) {
             getOrCreateTagBuilder(FluidLibTags.HARDENS_CONCRETE)
                     .addOptionalTag(FluidTags.WATER);
+
+            getOrCreateTagBuilder(FluidLibTags.KEEPS_CORAL_ALIVE)
+                    .addOptionalTag(FluidTags.WATER);
         }
     }
 }
