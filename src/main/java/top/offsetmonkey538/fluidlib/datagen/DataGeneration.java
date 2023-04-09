@@ -34,6 +34,9 @@ public class DataGeneration implements DataGeneratorEntrypoint {
 
             getOrCreateTagBuilder(FluidLibTags.WATERS_FARMLAND)
                     .addOptionalTag(FluidTags.WATER);
+
+            getOrCreateTagBuilder(FluidLibTags.DISABLES_RESPAWN_ANCHOR_EXPLOSION)
+                    .addOptionalTag(FluidTags.WATER);
         }
     }
 }

@@ -5,6 +5,7 @@
     "mixins": [
         "block.ConcretePowderBlockMixin",
         "block.FarmlandBlockMixin",
+        "block.RespawnAnchorMixin",
         "block.coral.CoralBlockBlockMixin",
         "block.coral.CoralParentBlockMixin"
     ],
