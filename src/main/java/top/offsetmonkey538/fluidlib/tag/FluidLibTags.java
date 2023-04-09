@@ -20,4 +20,9 @@ public final class FluidLibTags {
      * Add your fluid to this tag to make coral not die while touching your fluid.
      */
     public static final TagKey<Fluid> KEEPS_CORAL_ALIVE = TagKey.of(RegistryKeys.FLUID, id("keeps_coral_alive"));
+
+    /**
+     * Add your fluid to this tag to farmland not dry while touching your fluid.
+     */
+    public static final TagKey<Fluid> WATERS_FARMLAND = TagKey.of(RegistryKeys.FLUID, id("waters_farmland"));
 }

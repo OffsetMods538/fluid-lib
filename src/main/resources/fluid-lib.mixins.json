@@ -4,6 +4,7 @@
     "compatibilityLevel": "JAVA_17",
     "mixins": [
         "block.ConcretePowderBlockMixin",
+        "block.FarmlandBlockMixin",
         "block.coral.CoralBlockBlockMixin",
         "block.coral.CoralParentBlockMixin"
     ],
