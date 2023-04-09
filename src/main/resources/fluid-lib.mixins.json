@@ -8,6 +8,7 @@
         "block.FarmlandBlockMixin",
         "block.RespawnAnchorMixin",
         "block.SlabBlockMixin",
+        "block.SpongeBlockMixin",
         "block.coral.CoralBlockBlockMixin",
         "block.coral.CoralParentBlockMixin"
     ],

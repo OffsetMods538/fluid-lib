@@ -31,4 +31,9 @@ public final class FluidLibTags {
      * Add your fluid to this tag to make respawn anchor explosions not break blocks when touching your fluid.
      */
     public static final TagKey<Fluid> DISABLES_RESPAWN_ANCHOR_EXPLOSION = TagKey.of(RegistryKeys.FLUID, id("disables_respawn_anchor_explosion"));
+
+    /**
+     * Add your fluid to this tag to make sponges absorb your fluid.
+     */
+    public static final TagKey<Fluid> ABSORBED_BY_SPONGE = TagKey.of(RegistryKeys.FLUID, id("absorbed_by_sponge"));
 }
