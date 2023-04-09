@@ -7,9 +7,6 @@ classes
 # Fabric
 run/
 
-# Data generation
-src/main/generated
-
 # Java
 hs_err_*.log
 replay_*.log

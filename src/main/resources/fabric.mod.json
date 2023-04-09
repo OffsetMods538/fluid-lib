@@ -14,9 +14,6 @@
 	"icon": "assets/fluid-lib/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"fabric-datagen": [
-			"top.offsetmonkey538.fluidlib.datagen.DataGeneration"
-		],
 		"preLaunch": [
 			"com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
 		]

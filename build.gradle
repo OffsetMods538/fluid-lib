@@ -24,14 +24,6 @@ sourceSets {
 		compileClasspath += main.compileClasspath
 		runtimeClasspath += main.runtimeClasspath
 	}
-
-	main {
-		resources {
-			srcDirs += [
-			        'src/main/generated'
-			]
-		}
-	}
 }
 
 loom {
@@ -41,18 +33,6 @@ loom {
 		}
 		testmod {
 			sourceSet sourceSets.testmod
-		}
-	}
-
-	runs {
-		datagenClient {
-			inherit client
-			name "Data Gen"
-			vmArg "-Dfabric-api.datagen"
-			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
-			vmArg "-Dfabric-api.datagen.modid=fluid-lib"
-
-			runDir "build/datagen"
 		}
 	}
 
@@ -87,10 +67,6 @@ dependencies {
 	// Mixin Extras
 	includeImplementation "com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}"
 	annotationProcessor   "com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}"
-
-	// Fabric API, used for Data Generation
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-
 
 
 	testmodImplementation sourceSets.main.output
