@@ -25,7 +25,7 @@ public final class FluidLibTags {
      * Add your fluid to this tag to make farmland not dry while touching your fluid.
      */
     public static final TagKey<Fluid> WATERS_FARMLAND = TagKey.of(RegistryKeys.FLUID, id("waters_farmland"));
-
+//TODO: Remove empty line in refactoring commit
 
     /**
      * Add your fluid to this tag to make respawn anchor explosions not break blocks when touching your fluid.
@@ -36,4 +36,9 @@ public final class FluidLibTags {
      * Add your fluid to this tag to make sponges absorb your fluid.
      */
     public static final TagKey<Fluid> ABSORBED_BY_SPONGE = TagKey.of(RegistryKeys.FLUID, id("absorbed_by_sponge"));
+
+    /**
+     * Add your fluid to this tag to make {@link net.minecraft.block.SpreadableBlock spreadable blocks} (grass, mycelium) not able to spread while your fluid is above them.
+     */
+    public static final TagKey<Fluid> DISABLES_SPREADING = TagKey.of(RegistryKeys.FLUID, id("disables_spreading"));
 }
