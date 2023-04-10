@@ -1,0 +1,8 @@
+{
+    "replace": false,
+    "values": [
+        {
+            "id": "#testmod:testing_fluid"
+        }
+    ]
+}

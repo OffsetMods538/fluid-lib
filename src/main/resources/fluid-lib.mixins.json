@@ -11,7 +11,8 @@
         "block.SpongeBlockMixin",
         "block.SpreadableBlockMixin",
         "block.coral.CoralBlockBlockMixin",
-        "block.coral.CoralParentBlockMixin"
+        "block.coral.CoralParentBlockMixin",
+        "block.dispenser.BoatDispenserBehaviorMixin"
     ],
     "injectors": {
         "defaultRequire": 1

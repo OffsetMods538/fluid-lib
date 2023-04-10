@@ -41,4 +41,9 @@ public final class FluidLibTags {
      * Add your fluid to this tag to make {@link net.minecraft.block.SpreadableBlock spreadable blocks} (grass, mycelium) not able to spread while your fluid is above them.
      */
     public static final TagKey<Fluid> DISABLES_SPREADING = TagKey.of(RegistryKeys.FLUID, id("disables_spreading"));
+
+    /**
+     * Add your fluid to this tag to make dispensers able to place boats in your fluid.
+     */
+    public static final TagKey<Fluid> ALLOWS_BOAT_DISPENSING = TagKey.of(RegistryKeys.FLUID, id("allows_boat_dispensing"));
 }
