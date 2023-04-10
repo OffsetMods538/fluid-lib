@@ -45,4 +45,9 @@ public final class FluidLibTags {
      * Add your fluid to this tag to make dispensers able to place boats in your fluid.
      */
     public static final TagKey<Fluid> ALLOWS_BOAT_DISPENSING = TagKey.of(RegistryKeys.FLUID, id("allows_boat_dispensing"));
+
+    /**
+     * Add your fluid to this tag to make entities drown while in your fluid.
+     */
+    public static final TagKey<Fluid> ALLOWS_DROWNING = TagKey.of(RegistryKeys.FLUID, id("allows_drowning"));
 }
