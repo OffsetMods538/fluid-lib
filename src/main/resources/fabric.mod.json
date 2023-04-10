@@ -19,7 +19,11 @@
 		]
 	},
 	"mixins": [
-		"fluid-lib.mixins.json"
+		"fluid-lib.mixins.json",
+		{
+			"config": "fluid-lib.client.mixins.json",
+			"environment": "client"
+		}
 	],
 	"accessWidener": "fluid-lib.accesswidener",
 	"depends": {

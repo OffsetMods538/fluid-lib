@@ -27,9 +27,12 @@ sourceSets {
 }
 
 loom {
+	splitEnvironmentSourceSets()
+
 	mods {
 		modid {
 			sourceSet sourceSets.main
+			sourceSet sourceSets.client
 		}
 		testmod {
 			sourceSet sourceSets.testmod
@@ -70,6 +73,7 @@ dependencies {
 
 
 	testmodImplementation sourceSets.main.output
+	testmodImplementation sourceSets.client.output
 
 	modTestmodImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
