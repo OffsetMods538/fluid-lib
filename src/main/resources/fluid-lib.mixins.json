@@ -12,7 +12,8 @@
         "block.SpreadableBlockMixin",
         "block.coral.CoralBlockBlockMixin",
         "block.coral.CoralParentBlockMixin",
-        "block.dispenser.BoatDispenserBehaviorMixin"
+        "block.dispenser.BoatDispenserBehaviorMixin",
+        "entity.PlayerEntityMixin"
     ],
     "injectors": {
         "defaultRequire": 1
