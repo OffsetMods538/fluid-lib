@@ -15,6 +15,9 @@
 	"entrypoints": {
 		"main": [
 			"testing.Testing"
+		],
+		"client": [
+			"testing.Testing"
 		]
 	}
 }
