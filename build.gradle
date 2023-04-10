@@ -19,15 +19,17 @@ repositories {
 	}
 }
 
-sourceSets {
-	testmod {
-		compileClasspath += main.compileClasspath
-		runtimeClasspath += main.runtimeClasspath
-	}
-}
-
 loom {
 	splitEnvironmentSourceSets()
+	sourceSets {
+		testmod {
+			compileClasspath += main.compileClasspath
+			runtimeClasspath += main.runtimeClasspath
+
+			compileClasspath += client.compileClasspath
+			runtimeClasspath += client.runtimeClasspath
+		}
+	}
 
 	mods {
 		modid {
