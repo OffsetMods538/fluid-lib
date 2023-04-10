@@ -42,9 +42,9 @@ public final class FluidLibTags {
     public static final TagKey<Fluid> DISABLES_SPREADING = TagKey.of(RegistryKeys.FLUID, id("disables_spreading"));
 
     /**
-     * Add your fluid to this tag to make dispensers able to place boats in your fluid.
+     * Add your fluid to this tag to make boats able work in your fluid.
      */
-    public static final TagKey<Fluid> ALLOWS_BOAT_DISPENSING = TagKey.of(RegistryKeys.FLUID, id("allows_boat_dispensing"));
+    public static final TagKey<Fluid> ALLOWS_BOATS = TagKey.of(RegistryKeys.FLUID, id("allows_boats"));
 
     /**
      * Add your fluid to this tag to make entities drown while in your fluid.

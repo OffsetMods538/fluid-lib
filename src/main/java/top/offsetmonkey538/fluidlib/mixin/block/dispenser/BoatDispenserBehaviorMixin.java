@@ -21,6 +21,6 @@ public abstract class BoatDispenserBehaviorMixin {
             )
     )
     private boolean fluidlib$allowDispensingBoatsInFluidIfFluidInCorrectTag(FluidState instance, TagKey<Fluid> tag, Operation<Boolean> original) {
-        return instance.isIn(FluidLibTags.ALLOWS_BOAT_DISPENSING) || original.call(instance, tag);
+        return instance.isIn(FluidLibTags.ALLOWS_BOATS) || original.call(instance, tag);
     }
 }
