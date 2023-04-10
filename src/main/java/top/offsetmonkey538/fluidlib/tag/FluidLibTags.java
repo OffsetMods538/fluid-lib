@@ -25,7 +25,6 @@ public final class FluidLibTags {
      * Add your fluid to this tag to make farmland not dry while touching your fluid.
      */
     public static final TagKey<Fluid> WATERS_FARMLAND = TagKey.of(RegistryKeys.FLUID, id("waters_farmland"));
-//TODO: Remove empty line in refactoring commit
 
     /**
      * Add your fluid to this tag to make respawn anchor explosions not break blocks when touching your fluid.
