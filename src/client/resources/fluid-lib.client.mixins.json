@@ -3,7 +3,8 @@
     "package": "top.offsetmonkey538.fluidlib.mixin.client",
     "compatibilityLevel": "JAVA_17",
     "client": [
-        "InGameHudMixin"
+        "InGameHudMixin",
+        "InGameOverlayRendererMixin"
     ],
     "injectors": {
         "defaultRequire": 1
