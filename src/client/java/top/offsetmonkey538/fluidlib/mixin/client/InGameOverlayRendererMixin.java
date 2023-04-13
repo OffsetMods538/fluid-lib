@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.offsetmonkey538.fluidlib.IFluid;
-import top.offsetmonkey538.fluidlib.api.client.renderer.FluidOverlayRenderer;
+import top.offsetmonkey538.fluidlib.api.client.renderer.overlay.FluidOverlayRenderer;
 import top.offsetmonkey538.fluidlib.api.client.FluidOverlayRendererRegistry;
 
 @Mixin(InGameOverlayRenderer.class)

@@ -1,4 +1,4 @@
-package top.offsetmonkey538.fluidlib.api.client.renderer;
+package top.offsetmonkey538.fluidlib.api.client.renderer.overlay;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;

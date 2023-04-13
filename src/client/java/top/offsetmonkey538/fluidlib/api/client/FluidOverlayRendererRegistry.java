@@ -1,7 +1,7 @@
 package top.offsetmonkey538.fluidlib.api.client;
 
 import net.minecraft.fluid.Fluid;
-import top.offsetmonkey538.fluidlib.api.client.renderer.FluidOverlayRenderer;
+import top.offsetmonkey538.fluidlib.api.client.renderer.overlay.FluidOverlayRenderer;
 import top.offsetmonkey538.fluidlib.impl.client.FluidOverlayRendererRegistryImpl;
 
 /**
