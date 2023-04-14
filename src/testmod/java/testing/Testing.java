@@ -11,7 +11,9 @@ import testing.init.ModBlocks;
 import testing.init.ModFluidTags;
 import testing.init.ModFluids;
 import testing.init.ModItems;
+import top.offsetmonkey538.fluidlib.api.client.FluidFogModifierRegistry;
 import top.offsetmonkey538.fluidlib.api.client.FluidOverlayRendererRegistry;
+import top.offsetmonkey538.fluidlib.api.client.fog.SimpleFluidFogModifier;
 import top.offsetmonkey538.fluidlib.api.client.renderer.SolidColorFluidOverlayRenderer;
 import top.offsetmonkey538.fluidlib.api.client.renderer.TexturedFluidOverlayRenderer;
 
@@ -37,6 +39,13 @@ public class Testing implements ModInitializer, ClientModInitializer {
         //));
         FluidOverlayRendererRegistry.INSTANCE.register(ModFluidTags.TESTING_FLUID, new SolidColorFluidOverlayRenderer(
                 0x6479cd3c
+        ));
+
+        FluidFogModifierRegistry.INSTANCE.register(ModFluidTags.TESTING_FLUID, new SimpleFluidFogModifier(
+                1,
+                0x79cd3c,
+                -8f,
+                96f
         ));
 
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), ModFluids.STILL_TESTING_FLUID, ModFluids.FLOWING_TESTING_FLUID);
