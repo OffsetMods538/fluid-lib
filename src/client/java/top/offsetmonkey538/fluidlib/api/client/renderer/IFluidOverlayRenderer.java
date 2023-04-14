@@ -1,10 +1,10 @@
-package top.offsetmonkey538.fluidlib.api.client.renderer.overlay;
+package top.offsetmonkey538.fluidlib.api.client.renderer;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 
 @FunctionalInterface
-public interface FluidOverlayRenderer {
+public interface IFluidOverlayRenderer {
 
     /**
      * Renders the overlay.

@@ -1,4 +1,4 @@
-package top.offsetmonkey538.fluidlib.api.client.renderer.overlay;
+package top.offsetmonkey538.fluidlib.api.client.renderer;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
@@ -9,16 +9,16 @@ import net.minecraft.util.math.BlockPos;
 import org.joml.Matrix4f;
 
 /**
- * {@link FluidOverlayRenderer} using a solid color.
+ * {@link IFluidOverlayRenderer} using a solid color.
  */
-public class SolidColorFluidOverlayRenderer implements FluidOverlayRenderer {
+public class SolidColorFluidOverlayRenderer implements IFluidOverlayRenderer {
     private final float red;
     private final float green;
     private final float blue;
     private final float alpha;
 
     /**
-     * {@link FluidOverlayRenderer} using a solid color.
+     * {@link IFluidOverlayRenderer} using a solid color.
      * @param argb The alpha, red, green and blue components of the overlay. 0xAARRGGBB
      */
     public SolidColorFluidOverlayRenderer(int argb) {
@@ -30,7 +30,7 @@ public class SolidColorFluidOverlayRenderer implements FluidOverlayRenderer {
         );
     }
     /**
-     * {@link FluidOverlayRenderer} using a solid color.
+     * {@link IFluidOverlayRenderer} using a solid color.
      * @param red The red component of the overlay. From 0 to 255.
      * @param green The green component of the overlay. From 0 to 255.
      * @param blue The blue component of the overlay. From 0 to 255.

@@ -12,8 +12,8 @@ import testing.init.ModFluidTags;
 import testing.init.ModFluids;
 import testing.init.ModItems;
 import top.offsetmonkey538.fluidlib.api.client.FluidOverlayRendererRegistry;
-import top.offsetmonkey538.fluidlib.api.client.renderer.overlay.SolidColorFluidOverlayRenderer;
-import top.offsetmonkey538.fluidlib.api.client.renderer.overlay.TexturedFluidOverlayRenderer;
+import top.offsetmonkey538.fluidlib.api.client.renderer.SolidColorFluidOverlayRenderer;
+import top.offsetmonkey538.fluidlib.api.client.renderer.TexturedFluidOverlayRenderer;
 
 public class Testing implements ModInitializer, ClientModInitializer {
 

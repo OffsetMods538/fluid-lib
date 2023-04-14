@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.offsetmonkey538.fluidlib.api.client.FluidOverlayRendererRegistry;
-import top.offsetmonkey538.fluidlib.api.client.renderer.overlay.FluidOverlayRenderer;
+import top.offsetmonkey538.fluidlib.api.client.renderer.IFluidOverlayRenderer;
 import top.offsetmonkey538.fluidlib.impl.client.FluidOverlayRendererRegistryImpl;
 
 @Mixin(InGameOverlayRenderer.class)
@@ -24,7 +24,7 @@ public abstract class InGameOverlayRendererMixin {
         if (client.player == null) throw new IllegalStateException("Tried rendering fluid overlay but player is null!");
 
         final TagKey<Fluid> fluid = ((FluidOverlayRendererRegistryImpl) FluidOverlayRendererRegistry.INSTANCE).matches(client.player::isSubmergedIn).findFirst().orElse(null);
-        final FluidOverlayRenderer renderer = FluidOverlayRendererRegistry.INSTANCE.get(fluid);
+        final IFluidOverlayRenderer renderer = FluidOverlayRendererRegistry.INSTANCE.get(fluid);
         if (renderer != null) renderer.render(client, matrices);
     }
 }

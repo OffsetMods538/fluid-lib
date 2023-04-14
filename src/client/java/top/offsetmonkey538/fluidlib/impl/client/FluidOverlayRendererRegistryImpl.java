@@ -2,7 +2,7 @@ package top.offsetmonkey538.fluidlib.impl.client;
 
 import net.minecraft.fluid.Fluid;
 import net.minecraft.registry.tag.TagKey;
-import top.offsetmonkey538.fluidlib.api.client.renderer.overlay.FluidOverlayRenderer;
+import top.offsetmonkey538.fluidlib.api.client.renderer.IFluidOverlayRenderer;
 import top.offsetmonkey538.fluidlib.api.client.FluidOverlayRendererRegistry;
 
 import java.util.HashMap;
@@ -13,10 +13,10 @@ import java.util.stream.Stream;
 import static top.offsetmonkey538.fluidlib.FluidLib.LOGGER;
 
 public class FluidOverlayRendererRegistryImpl implements FluidOverlayRendererRegistry {
-    private final Map<TagKey<Fluid>, FluidOverlayRenderer> renderers = new HashMap<>();
+    private final Map<TagKey<Fluid>, IFluidOverlayRenderer> renderers = new HashMap<>();
 
     @Override
-    public void register(TagKey<Fluid> fluid, FluidOverlayRenderer renderer) {
+    public void register(TagKey<Fluid> fluid, IFluidOverlayRenderer renderer) {
         if (renderers.containsKey(fluid)) {
             LOGGER.warn("Tried registering overlay renderer '{}' for fluid '{}', but it already has overlay renderer '{}'. Ignoring!", renderer, fluid.id(), get(fluid));
             return;
@@ -25,7 +25,7 @@ public class FluidOverlayRendererRegistryImpl implements FluidOverlayRendererReg
     }
 
     @Override
-    public FluidOverlayRenderer get(TagKey<Fluid> fluid) {
+    public IFluidOverlayRenderer get(TagKey<Fluid> fluid) {
         return renderers.get(fluid);
     }
 

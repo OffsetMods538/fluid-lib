@@ -1,4 +1,4 @@
-package top.offsetmonkey538.fluidlib.api.client.renderer.overlay;
+package top.offsetmonkey538.fluidlib.api.client.renderer;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
@@ -10,13 +10,13 @@ import net.minecraft.util.math.BlockPos;
 import org.joml.Matrix4f;
 
 /**
- * {@link FluidOverlayRenderer} using a texture.
+ * {@link IFluidOverlayRenderer} using a texture.
  */
-public class TexturedFluidOverlayRenderer implements FluidOverlayRenderer {
+public class TexturedFluidOverlayRenderer implements IFluidOverlayRenderer {
     private final Identifier texture;
 
     /**
-     * {@link FluidOverlayRenderer} using a texture.
+     * {@link IFluidOverlayRenderer} using a texture.
      * @param texture The texture to use.
      */
     public TexturedFluidOverlayRenderer(Identifier texture) {
