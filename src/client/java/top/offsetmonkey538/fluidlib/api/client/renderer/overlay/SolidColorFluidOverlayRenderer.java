@@ -70,4 +70,9 @@ public class SolidColorFluidOverlayRenderer implements FluidOverlayRenderer {
 
         RenderSystem.disableBlend();
     }
+
+    @Override
+    public String toString() {
+        return "SolidColorFluidOverlayRenderer[red=%s,green=%s,blue=%s,alpha=%s]".formatted(red * 255f, green * 255f, blue * 255f, alpha * 255f);
+    }
 }

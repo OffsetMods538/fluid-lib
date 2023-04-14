@@ -55,4 +55,9 @@ public class TexturedFluidOverlayRenderer implements FluidOverlayRenderer {
 
         RenderSystem.disableBlend();
     }
+
+    @Override
+    public String toString() {
+        return "TexturedFluidOverlayRenderer[texture=%s]".formatted(texture);
+    }
 }
