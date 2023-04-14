@@ -8,10 +8,12 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Identifier;
 import testing.init.ModBlocks;
+import testing.init.ModFluidTags;
 import testing.init.ModFluids;
 import testing.init.ModItems;
 import top.offsetmonkey538.fluidlib.api.client.FluidOverlayRendererRegistry;
 import top.offsetmonkey538.fluidlib.api.client.renderer.overlay.SolidColorFluidOverlayRenderer;
+import top.offsetmonkey538.fluidlib.api.client.renderer.overlay.TexturedFluidOverlayRenderer;
 
 public class Testing implements ModInitializer, ClientModInitializer {
 
@@ -30,10 +32,10 @@ public class Testing implements ModInitializer, ClientModInitializer {
                 0x79cd3c
         ));
 
-        //FluidOverlayRendererRegistry.INSTANCE.register(ModFluids.STILL_TESTING_FLUID, ModFluids.FLOWING_TESTING_FLUID, new TexturedFluidOverlayRenderer(
+        //FluidOverlayRendererRegistry.INSTANCE.register(ModFluidTags.TESTING_FLUID, new TexturedFluidOverlayRenderer(
         //        new Identifier("textures/block/oak_log.png")
         //));
-        FluidOverlayRendererRegistry.INSTANCE.register(ModFluids.STILL_TESTING_FLUID, ModFluids.FLOWING_TESTING_FLUID, new SolidColorFluidOverlayRenderer(
+        FluidOverlayRendererRegistry.INSTANCE.register(ModFluidTags.TESTING_FLUID, new SolidColorFluidOverlayRenderer(
                 0x6479cd3c
         ));
 
