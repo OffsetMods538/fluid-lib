@@ -10,11 +10,17 @@ import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+import static top.offsetmonkey538.fluidlib.FluidLib.LOGGER;
+
 public class FluidOverlayRendererRegistryImpl implements FluidOverlayRendererRegistry {
     private final Map<TagKey<Fluid>, FluidOverlayRenderer> renderers = new HashMap<>();
 
     @Override
     public void register(TagKey<Fluid> fluid, FluidOverlayRenderer renderer) {
+        if (renderers.containsKey(fluid)) {
+            LOGGER.warn("Tried registering overlay renderer '{}' for fluid '{}', but it already has overlay renderer '{}'. Ignoring!", renderer, fluid.id(), get(fluid));
+            return;
+        }
         renderers.put(fluid, renderer);
     }
 
