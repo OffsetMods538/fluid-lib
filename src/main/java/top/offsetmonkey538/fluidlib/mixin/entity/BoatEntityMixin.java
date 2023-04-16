@@ -15,6 +15,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import top.offsetmonkey538.fluidlib.tag.FluidLibTags;
 
+/**
+ * Makes boats work on fluids with the {@link FluidLibTags#ALLOWS_BOATS fluid-lib:allows_boats} tag.
+ */
 @Mixin(BoatEntity.class)
 public abstract class BoatEntityMixin extends Entity {
     private BoatEntityMixin(EntityType<?> type, World world) {

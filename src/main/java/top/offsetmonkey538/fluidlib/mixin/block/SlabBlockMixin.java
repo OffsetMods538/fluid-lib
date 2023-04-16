@@ -9,6 +9,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import top.offsetmonkey538.fluidlib.IFluid;
 
+/**
+ * Something related to path finding through {@link IFluid custom fluid}s.
+ */
 @Mixin(SlabBlock.class)
 public abstract class SlabBlockMixin {
 

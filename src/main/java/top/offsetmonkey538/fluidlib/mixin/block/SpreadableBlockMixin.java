@@ -9,6 +9,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import top.offsetmonkey538.fluidlib.tag.FluidLibTags;
 
+/**
+ * Disables grass, mycelium, etc. spreading if the above fluid is in the {@link FluidLibTags#DISABLES_SPREADING fluid-lib:disables_spreading} tag.
+ */
 @Mixin(SpreadableBlock.class)
 public abstract class SpreadableBlockMixin {
 

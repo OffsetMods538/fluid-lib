@@ -6,6 +6,9 @@ import net.minecraft.registry.tag.TagKey;
 
 import static top.offsetmonkey538.fluidlib.FluidLib.id;
 
+/**
+ * Stores all the tags used for the mod.
+ */
 public final class FluidLibTags {
     private FluidLibTags() {
 

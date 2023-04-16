@@ -9,6 +9,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import top.offsetmonkey538.fluidlib.tag.FluidLibTags;
 
+/**
+ * Deactivates turtle helmet if in a fluid with the {@link FluidLibTags#ALLOWS_DROWNING fluid-lib:allows_drowning} tag.
+ */
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends Entity {
     private PlayerEntityMixin(EntityType<?> type, World world) {

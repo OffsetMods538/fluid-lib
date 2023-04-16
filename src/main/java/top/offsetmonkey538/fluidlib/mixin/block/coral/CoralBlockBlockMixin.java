@@ -10,6 +10,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import top.offsetmonkey538.fluidlib.tag.FluidLibTags;
 
+/**
+ * Make coral able to survive in fluids with the {@link FluidLibTags#KEEPS_CORAL_ALIVE fluid-lib:keeps_coral_alive} tag.
+ */
 @Mixin(CoralBlockBlock.class)
 public abstract class CoralBlockBlockMixin {
 

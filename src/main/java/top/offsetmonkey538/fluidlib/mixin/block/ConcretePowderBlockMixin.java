@@ -7,6 +7,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import top.offsetmonkey538.fluidlib.tag.FluidLibTags;
 
+/**
+ * Make fluids in the {@link FluidLibTags#HARDENS_CONCRETE fluid-lib:hardens_concrete} tag harden concrete.
+ */
 @Mixin(ConcretePowderBlock.class)
 public abstract class ConcretePowderBlockMixin {
 

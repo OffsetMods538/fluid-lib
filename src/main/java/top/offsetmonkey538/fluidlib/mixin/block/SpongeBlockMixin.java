@@ -8,6 +8,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import top.offsetmonkey538.fluidlib.tag.FluidLibTags;
 
+/**
+ * Makes sponges absorb fluids in the {@link FluidLibTags#ABSORBED_BY_SPONGE fluid-lib:absorbed_by_spong} tag.
+ */
 @Mixin(SpongeBlock.class)
 public abstract class SpongeBlockMixin {
 

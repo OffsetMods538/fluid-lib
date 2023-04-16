@@ -9,6 +9,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import top.offsetmonkey538.fluidlib.tag.FluidLibTags;
 
+/**
+ * Make farmland get watered by fluids in the {@link FluidLibTags#WATERS_FARMLAND fluid-lib:waters_farmland} tag.
+ */
 @Mixin(FarmlandBlock.class)
 public abstract class FarmlandBlockMixin {
 

@@ -11,6 +11,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import top.offsetmonkey538.fluidlib.tag.FluidLibTags;
 
+/**
+ * Makes respawn anchor explosions not break blocks when the fluid is in the {@link FluidLibTags#DISABLES_RESPAWN_ANCHOR_EXPLOSION fluid-lib:disables_respawn_anchor_explosion} tag.
+ */
 @Mixin(RespawnAnchorBlock.class)
 public class RespawnAnchorMixin {
 

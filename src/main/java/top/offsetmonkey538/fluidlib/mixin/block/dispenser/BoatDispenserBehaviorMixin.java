@@ -10,6 +10,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import top.offsetmonkey538.fluidlib.tag.FluidLibTags;
 
+/**
+ * Allows boats to be dispensed on fluids with the {@link FluidLibTags#ALLOWS_BOATS fluid-lib:allows_boats} tag.
+ */
 @Mixin(BoatDispenserBehavior.class)
 public abstract class BoatDispenserBehaviorMixin {
 

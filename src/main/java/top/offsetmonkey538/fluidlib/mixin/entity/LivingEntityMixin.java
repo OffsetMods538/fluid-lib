@@ -9,6 +9,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import top.offsetmonkey538.fluidlib.tag.FluidLibTags;
 
+/**
+ * Makes entities drown in fluids with the {@link FluidLibTags#ALLOWS_DROWNING fluid-lib:allows_drowning} tag.
+ */
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
     private LivingEntityMixin(EntityType<?> type, World world) {
