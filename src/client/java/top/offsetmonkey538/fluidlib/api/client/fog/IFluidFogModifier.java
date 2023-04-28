@@ -17,7 +17,10 @@ public interface IFluidFogModifier {
     /**
      * Called in the {@link net.minecraft.client.render.BackgroundRenderer#applyFog(Camera, BackgroundRenderer.FogType, float, boolean, float) BackgroundRenderer#applyFog()} method.
      * @param fogData the fog data to modify.
-     * @param viewDistance the current view distance.
+     * @param camera the current camera.
+     * @param viewDistance the current view distance in blocks.
+     * @param thickFog should the fog be thick. (Dragon fight, nether dimension)
+     * @param tickDelta the tick delta.
      */
-    void modifyFogData(BackgroundRenderer.FogData fogData, float viewDistance);
+    void modifyFogData(BackgroundRenderer.FogData fogData, Camera camera, float viewDistance, boolean thickFog, float tickDelta);
 }

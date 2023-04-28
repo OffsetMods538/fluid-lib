@@ -1,6 +1,7 @@
 package top.offsetmonkey538.fluidlib.api.client.fog;
 
 import net.minecraft.client.render.BackgroundRenderer;
+import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.FogShape;
 import top.offsetmonkey538.fluidlib.mixin.client.accessor.BackgroundRendererAccessor;
 
@@ -59,7 +60,7 @@ public class SimpleFluidFogModifier implements IFluidFogModifier {
     }
 
     @Override
-    public void modifyFogData(BackgroundRenderer.FogData fogData, float viewDistance) {
+    public void modifyFogData(BackgroundRenderer.FogData fogData, Camera camera, float viewDistance, boolean thickFog, float tickDelta) {
         fogData.fogStart = fogStart;
         fogData.fogEnd = fogEnd;
         if (fogEnd > viewDistance) {

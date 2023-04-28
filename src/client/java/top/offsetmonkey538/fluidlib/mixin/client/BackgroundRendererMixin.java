@@ -52,7 +52,7 @@ public abstract class BackgroundRendererMixin {
         final IFluidFogModifier fogModifier = FluidFogModifierRegistry.INSTANCE.get(fluid);
         if (fogModifier == null) return;
 
-        fogModifier.modifyFogData(fogData, viewDistance);
+        fogModifier.modifyFogData(fogData, camera, viewDistance, thickFog, tickDelta);
     }
 
     @Unique
