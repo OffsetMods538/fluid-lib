@@ -86,14 +86,6 @@ public class SimpleFluidFogModifier implements IFluidFogModifier {
             fogData.fogEnd = viewDistance;
             fogData.fogShape = FogShape.CYLINDER;
         }
-
-        //fogData.fogShape = FogShape.SPHERE;
-        //fogData.fogStart = fogStart;
-        //fogData.fogEnd = fogEnd;
-        //if (fogData.fogEnd > viewDistance) {
-        //    fogData.fogEnd = viewDistance;
-        //    fogData.fogShape = FogShape.CYLINDER;
-        //}
     }
     @Override
     public String toString() {

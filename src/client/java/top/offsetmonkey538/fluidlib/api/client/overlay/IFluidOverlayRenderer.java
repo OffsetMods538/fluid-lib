@@ -1,4 +1,4 @@
-package top.offsetmonkey538.fluidlib.api.client.renderer;
+package top.offsetmonkey538.fluidlib.api.client.overlay;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;

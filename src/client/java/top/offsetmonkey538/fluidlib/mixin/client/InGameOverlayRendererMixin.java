@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.offsetmonkey538.fluidlib.api.client.FluidOverlayRendererRegistry;
-import top.offsetmonkey538.fluidlib.api.client.renderer.IFluidOverlayRenderer;
+import top.offsetmonkey538.fluidlib.api.client.overlay.IFluidOverlayRenderer;
 import top.offsetmonkey538.fluidlib.impl.client.FluidOverlayRendererRegistryImpl;
 
 import static top.offsetmonkey538.fluidlib.FluidLib.LOGGER;

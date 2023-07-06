@@ -17,7 +17,7 @@ public abstract class ConcretePowderBlockMixin {
             method = "hardensIn",
             at = @At("RETURN")
     )
-    private static boolean fluidlib$makeConcreteHardenIfFluidInHardensConcreteTag(boolean original, BlockState state) {
+    private static boolean fluidlib$makeConcreteHardenIfFluidInCorrectTag(boolean original, BlockState state) {
         return original || state.getFluidState().isIn(FluidLibTags.HARDENS_CONCRETE);
     }
 }

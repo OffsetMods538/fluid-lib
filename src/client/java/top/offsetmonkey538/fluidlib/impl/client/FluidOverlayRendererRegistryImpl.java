@@ -2,7 +2,7 @@ package top.offsetmonkey538.fluidlib.impl.client;
 
 import net.minecraft.fluid.Fluid;
 import net.minecraft.registry.tag.TagKey;
-import top.offsetmonkey538.fluidlib.api.client.renderer.IFluidOverlayRenderer;
+import top.offsetmonkey538.fluidlib.api.client.overlay.IFluidOverlayRenderer;
 import top.offsetmonkey538.fluidlib.api.client.FluidOverlayRendererRegistry;
 
 import java.util.HashMap;

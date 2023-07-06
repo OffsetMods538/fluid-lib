@@ -1,16 +1,15 @@
 package top.offsetmonkey538.fluidlib.impl.client;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.registry.tag.TagKey;
 import top.offsetmonkey538.fluidlib.api.client.FluidFogModifierRegistry;
 import top.offsetmonkey538.fluidlib.api.client.fog.IFluidFogModifier;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
-
-import static top.offsetmonkey538.fluidlib.FluidLib.LOGGER;
+import static top.offsetmonkey538.fluidlib.FluidLib.*;
 
 public class FluidFogModifierRegistryImpl implements FluidFogModifierRegistry {
     private final Map<TagKey<Fluid>, IFluidFogModifier> fogModifiers = new HashMap<>();
