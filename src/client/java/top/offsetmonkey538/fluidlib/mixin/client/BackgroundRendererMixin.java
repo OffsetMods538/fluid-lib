@@ -1,6 +1,9 @@
 package top.offsetmonkey538.fluidlib.mixin.client;
 
 import com.llamalad7.mixinextras.sugar.Local;
+import com.llamalad7.mixinextras.sugar.Share;
+import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
+import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import com.mojang.blaze3d.systems.RenderSystem;
 import java.awt.Color;
 import net.minecraft.client.MinecraftClient;
@@ -14,7 +17,6 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldView;
 import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -38,11 +40,28 @@ public abstract class BackgroundRendererMixin {
             method = "render",
             at = @At("STORE")
     )
-    private static CameraSubmersionType fluidlib$disableUnneededVanillaCodeWhenInCustomFluid(CameraSubmersionType value, @Local(argsOnly = true) Camera camera, @Local(argsOnly = true) ClientWorld world) {
+    private static CameraSubmersionType fluidlib$disableUnneededVanillaCodeWhenInCustomFluid(CameraSubmersionType value, @Local(argsOnly = true) Camera camera, @Local(argsOnly = true) ClientWorld world, @Share("originalSubmersionType") LocalRef<CameraSubmersionType> originalSubmersionType) {
+        originalSubmersionType.set(value);
+
         if (value != CameraSubmersionType.NONE) return value;
         if (fluidlib$getFogModifier(camera, world) == null) return value;
 
+        // By setting the return type to LAVA, we make sure that the final else
+        // block in the if-else chain doesn't run. We don't *need* to do this, but
+        // the code in that else block does quite a lot of math and things, as we
+        // later overwrite its work anyway, there's no point in wasting performance.
         return CameraSubmersionType.LAVA;
+    }
+
+    @ModifyVariable(
+            method = "render",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/render/BackgroundRenderer;getFogModifier(Lnet/minecraft/entity/Entity;F)Lnet/minecraft/client/render/BackgroundRenderer$StatusEffectFogModifier;"
+            )
+    )
+    private static CameraSubmersionType fluidlib$setOriginalCameraSubmersionType(CameraSubmersionType current, @Share("originalSubmersionType") LocalRef<CameraSubmersionType> originalSubmersionType) {
+        return originalSubmersionType.get();
     }
 
     @Inject(
@@ -53,16 +72,27 @@ public abstract class BackgroundRendererMixin {
             )
     )
     private static void fluidlib$applyFluidFogColorModifier(Camera camera, float tickDelta, ClientWorld world, int viewDistance, float skyDarkness, CallbackInfo ci) {
+        // Get the fog modifier for the current fluid.
         final IFluidFogModifier fogModifier = fluidlib$getFogModifier(camera, world);
         if (fogModifier == null) return;
 
-        Color color = fogModifier.getColor();
+        Color color = fogModifier.getColor(camera, tickDelta, world, viewDistance, skyDarkness);
 
         red = color.getRed() / 255f;
         green = color.getGreen() / 255f;
         blue = color.getBlue() / 255f;
+    }
 
-        //RenderSystem.setShaderFogColor(red, green, blue, 0);
+    @ModifyVariable(
+            method = "applyFog",
+            at = @At(
+                    value = "STORE"
+            )
+    )
+    private static BackgroundRenderer.StatusEffectFogModifier fluidlib$storeStatusEffectFogModifierExistence(BackgroundRenderer.StatusEffectFogModifier fogModifier, @Share("hasStatusEffectFogModifier") LocalBooleanRef hasStatusEffectFogModifier) {
+        hasStatusEffectFogModifier.set(fogModifier != null);
+
+        return fogModifier;
     }
 
     @Inject(
@@ -73,8 +103,8 @@ public abstract class BackgroundRendererMixin {
                     //target = "Lcom/mojang/blaze3d/systems/RenderSystem;setShaderFogStart(F)V"
             )
     )
-    private static void fluidlib$applyFluidFogDataModifier(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci, @Local(ordinal = 0) BackgroundRenderer.FogData fogData) {
-        fogData.fogShape = FogShape.SPHERE;
+    private static void fluidlib$applyFluidFogDataModifier(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci, @Local(ordinal = 0) BackgroundRenderer.FogData fogData, @Share("hasStatusEffectFogModifier") LocalBooleanRef hasStatusEffectFogModifier) {
+        if (hasStatusEffectFogModifier.get()) return;
 
         //// Exact copy of vanilla water fog
         //fogData.fogStart = -8.0f;
@@ -99,6 +129,8 @@ public abstract class BackgroundRendererMixin {
         final ClientWorld world = MinecraftClient.getInstance().world;
         if (world == null) return;
 
+        fogData.fogShape = FogShape.SPHERE;
+
         // Get the fog modifier for the fluid.
         final IFluidFogModifier fogModifier = fluidlib$getFogModifier(camera, world);
         if (fogModifier == null) return;
@@ -114,9 +146,8 @@ public abstract class BackgroundRendererMixin {
     @Unique
     private static FluidState fluidlib$getFluidInCamera(Camera camera, BlockView world) {
         final BlockPos pos = camera.getBlockPos();
-        final FluidState fluid = world.getFluidState(pos);
 
-        return fluid;
+        return world.getFluidState(pos);
     }
 
     @Unique

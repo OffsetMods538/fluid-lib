@@ -1,14 +1,10 @@
 package top.offsetmonkey538.fluidlib.api.client.fog;
 
 import java.awt.Color;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.FogShape;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.BiomeTags;
-import net.minecraft.world.biome.Biome;
-import top.offsetmonkey538.fluidlib.mixin.client.accessor.BackgroundRendererAccessor;
+import net.minecraft.client.world.ClientWorld;
 
 /**
  * Simple {@link IFluidFogModifier IFluidFogModifier} that specifies RGB values and a start and end for the fog.
@@ -78,23 +74,14 @@ public class SimpleFluidFogModifier implements IFluidFogModifier {
     }
 
     @Override
-    public Color getColor() {
+    public Color getColor(Camera camera, float tickDelta, ClientWorld world, int viewDistance, float skyDarkness) {
         return new Color(red, green, blue);
     }
 
     @Override
     public void modifyFogData(BackgroundRenderer.FogData fogData, Camera camera, float viewDistance, boolean thickFog, float tickDelta) {
-
-        // Exact copy of vanilla water fog
-        fogData.fogStart = -8.0f;
-        fogData.fogEnd = 96.0f;
-        if (camera.getFocusedEntity() instanceof ClientPlayerEntity entity) {
-            fogData.fogEnd *= Math.max(0.25f, entity.getUnderwaterVisibility());
-            RegistryEntry<Biome> registryEntry = entity.world.getBiome(entity.getBlockPos());
-            if (registryEntry.isIn(BiomeTags.HAS_CLOSER_WATER_FOG)) {
-                fogData.fogEnd *= 0.85f;
-            }
-        }
+        fogData.fogStart = fogStart;
+        fogData.fogEnd = fogEnd;
         if (fogData.fogEnd > viewDistance) {
             fogData.fogEnd = viewDistance;
             fogData.fogShape = FogShape.CYLINDER;

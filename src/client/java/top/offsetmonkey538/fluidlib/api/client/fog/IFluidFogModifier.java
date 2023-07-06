@@ -12,7 +12,7 @@ public interface IFluidFogModifier {
      *
      * @return The color for the fog.
      */
-    Color getColor();
+    Color getColor(Camera camera, float tickDelta, ClientWorld world, int viewDistance, float skyDarkness);
 
     /**
      * Called in the {@link net.minecraft.client.render.BackgroundRenderer#applyFog(Camera, BackgroundRenderer.FogType, float, boolean, float) BackgroundRenderer#applyFog()} method.
