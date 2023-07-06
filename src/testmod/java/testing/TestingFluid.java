@@ -8,7 +8,6 @@ import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -17,12 +16,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import testing.init.ModBlocks;
-import testing.init.ModFluidTags;
 import testing.init.ModFluids;
 import testing.init.ModItems;
-import top.offsetmonkey538.fluidlib.IFluid;
 
-public abstract class TestingFluid extends FlowableFluid implements IFluid {
+public abstract class TestingFluid extends FlowableFluid {
 
     @Override
     public Fluid getStill() {
@@ -83,11 +80,6 @@ public abstract class TestingFluid extends FlowableFluid implements IFluid {
     @Override
     protected float getBlastResistance() {
         return 100;
-    }
-
-    @Override
-    public TagKey<Fluid> getTagKey() {
-        return ModFluidTags.TESTING_FLUID;
     }
 
     public static class Flowing extends TestingFluid {
