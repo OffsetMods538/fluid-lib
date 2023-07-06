@@ -14,7 +14,7 @@ repositories {
 		name = "JitPack"
 		url  = "https://jitpack.io"
 		content {
-			includeGroup "com.github.LlamaLad7"
+			includeGroup "com.github.llamalad7.mixinextras"
 		}
 	}
 }
@@ -77,8 +77,7 @@ dependencies {
 	// includeModImplementation fabricApi.module("fabric-api-base", project.fabric_api_version)
 
 	// Mixin Extras
-	includeImplementation "com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}"
-	annotationProcessor   "com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}"
+	includeImplementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-fabric:${project.mixin_extras_version}"))
 
 
 	testmodImplementation sourceSets.main.output
