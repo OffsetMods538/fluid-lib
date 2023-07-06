@@ -25,4 +25,31 @@ public interface FluidBehaviour {
     default double getEntityPushSpeed(Entity entity) {
         return 0.014;
     }
+
+    /**
+     * Run when the provided entity enters the fluid.
+     *
+     * @param entity The entity.
+     */
+    default void onEnter(Entity entity) {
+
+    }
+
+    /**
+     * Run every tick while the provided entity is touching the fluid.
+     *
+     * @param entity The entity.
+     */
+    default void collisionTick(Entity entity) {
+
+    }
+
+    /**
+     * Run when the provided entity leaves the fluid.
+     *
+     * @param entity The entity.
+     */
+    default void onExit(Entity entity) {
+
+    }
 }
