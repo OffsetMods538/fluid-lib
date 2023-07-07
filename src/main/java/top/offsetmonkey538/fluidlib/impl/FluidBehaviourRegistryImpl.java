@@ -34,8 +34,4 @@ public class FluidBehaviourRegistryImpl implements FluidBehaviourRegistry {
     public boolean contains(Fluid fluid) {
         return fluidBehaviours.containsKey(fluid);
     }
-
-    public boolean contains(FluidState fluidState) {
-        return contains(fluidState.getFluid());
-    }
 }

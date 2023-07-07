@@ -52,4 +52,16 @@ public interface FluidBehaviour {
     default void onExit(Entity entity) {
 
     }
+
+    /**
+     * If the provided entity can swim in this fluid.
+     * <br />
+     * Default implementation return true.
+     *
+     * @param entity The entity.
+     * @return if the provided entity is allowed to swim in this fluid.
+     */
+    default boolean canSwim(Entity entity) {
+        return true;
+    }
 }

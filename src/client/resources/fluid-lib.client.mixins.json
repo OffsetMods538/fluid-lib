@@ -5,7 +5,8 @@
     "client": [
         "BackgroundRendererMixin",
         "InGameHudMixin",
-        "InGameOverlayRendererMixin"
+        "InGameOverlayRendererMixin",
+        "entity.ClientPlayerEntityMixin"
     ],
     "injectors": {
         "defaultRequire": 1

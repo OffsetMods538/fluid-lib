@@ -1,15 +1,14 @@
 package top.offsetmonkey538.fluidlib.mixin.entity;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,8 +27,12 @@ public abstract class EntityMixin {
 
     @Shadow public float fallDistance; // TODO
 
+    @Shadow public abstract boolean isSubmergedIn(TagKey<Fluid> fluidTag);
+
+    @Shadow public abstract double getFluidHeight(TagKey<Fluid> fluid);
+
     @Unique
-    private final List<FluidBehaviour> fluidlib$collidedFluids = new ArrayList<>();
+    public final List<FluidBehaviour> fluidlib$collidedFluids = new ArrayList<>();
 
     @Inject(
             method = "baseTick",
@@ -47,6 +50,7 @@ public abstract class EntityMixin {
 
             if (entity.updateMovementInFluid(behaviour.getTagKey(), pushSpeed)) {
                 behaviour.collisionTick(entity);
+                fallDistance = 0;
 
                 if (fluidlib$collidedFluids.contains(behaviour)) return;
                 fluidlib$collidedFluids.add(behaviour);
@@ -61,42 +65,77 @@ public abstract class EntityMixin {
             behaviour.onExit(entity);
         });
     }
-//
-//
-//    //// SWIMMING ////
-//
-//    @ModifyExpressionValue(
-//            method = "updateSwimming",
-//            at = @At(
-//                    value = "INVOKE",
-//                    target = "Lnet/minecraft/entity/Entity;isTouchingWater()Z"
-//            )
-//    )
-//    private boolean fluidlib$continueSwimmingIfInCustomFluid(boolean original) {
-//        if (fluidlib$getFluid() instanceof IFluid fluid && fluid.canSwim((Entity) (Object) this)) return true;
-//        return original;
-//    }
-//    @ModifyExpressionValue(
-//            method = "updateSwimming",
-//            at = @At(
-//                    value = "INVOKE",
-//                    target = "Lnet/minecraft/entity/Entity;isSubmergedInWater()Z"
-//            )
-//    )
-//    private boolean fluidlib$makeCustomFluidSwimmable(boolean original) {
-//        if (!(fluidlib$getFluid() instanceof IFluid fluid && fluid.canSwim((Entity) (Object) this))) return original;
-//        return isSubmergedIn(fluid.getTagKey());
-//    }
-//
-//    @ModifyArg(
-//            method = "updateSwimming",
-//            at = @At(
-//                    value = "INVOKE",
-//                    target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"
-//            )
-//    )
-//    private TagKey<Fluid> fluidlib$makeCustomFluidSwimmable(TagKey<Fluid> original) {
-//        if (fluidlib$getFluid() instanceof IFluid fluid && fluid.canSwim((Entity) (Object) this)) return fluid.getTagKey();
-//        return original;
-//    }
+
+    @ModifyExpressionValue(
+            method = "updateSwimming",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/Entity;isTouchingWater()Z"
+            )
+    )
+    private boolean fluidlib$continueSwimmingIfInCustomFluid(boolean original) {
+        final boolean[] returnValue = {false};
+
+        ((FluidBehaviourRegistryImpl) FluidBehaviourRegistry.INSTANCE).forEach((fluid, behaviour) -> {
+            if (!fluidlib$collidedFluids.contains(behaviour)) return;
+            if (!behaviour.canSwim((Entity) (Object) this)) return;
+
+            returnValue[0] = true;
+        });
+
+        return original || returnValue[0];
+    }
+    @ModifyExpressionValue(
+            method = "updateSwimming",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/Entity;isSubmergedInWater()Z"
+            )
+    )
+    private boolean fluidlib$startSwimmingIfInCustomFluid1(boolean original) {
+        final boolean[] returnValue = {false};
+
+        ((FluidBehaviourRegistryImpl) FluidBehaviourRegistry.INSTANCE).forEach((fluid, behaviour) -> {
+            if (!isSubmergedIn(behaviour.getTagKey())) return;
+            if (!behaviour.canSwim((Entity) (Object) this)) return;
+
+            returnValue[0] = true;
+        });
+
+        return original || returnValue[0];
+    }
+
+    @WrapOperation(
+            method = "updateSwimming",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"
+            )
+    )
+    private boolean fluidlib$startSwimmingIfInCustomFluid2(FluidState instance, TagKey<Fluid> tag, Operation<Boolean> original) {
+        FluidBehaviour behaviour = FluidBehaviourRegistry.INSTANCE.get(instance);
+        if (behaviour == null || !behaviour.canSwim((Entity) (Object) this) || !instance.isIn(behaviour.getTagKey())) return original.call(instance, tag);
+
+        return true;
+    }
+
+    @ModifyExpressionValue(
+            method = {"isCrawling", "shouldSpawnSprintingParticles"},
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/Entity;isTouchingWater()Z"
+            )
+    )
+    private boolean fluidlib$startSwimmingIfInCustomFluid3(boolean original) {
+        final boolean[] returnValue = {original};
+
+        ((FluidBehaviourRegistryImpl) FluidBehaviourRegistry.INSTANCE).forEach((fluid, behaviour) -> {
+            if (!fluidlib$collidedFluids.contains(behaviour)) return;
+            if (!behaviour.canSwim((Entity) (Object) this)) return;
+
+            returnValue[0] = true;
+        });
+
+        return returnValue[0];
+    }
 }

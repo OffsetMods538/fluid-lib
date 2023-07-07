@@ -36,11 +36,22 @@ public interface FluidBehaviourRegistry {
     }
 
     /**
-     * Get the {@link FluidBehaviour} for a specific fluid tag.
+     * Get the {@link FluidBehaviour} for a specific fluid.
      * @param fluid The fluid.
-     * @return The {@link FluidBehaviour} for the provided fluid tag.
+     * @return The {@link FluidBehaviour} for the provided fluid.
+     * @see #get(FluidState)
      */
     FluidBehaviour get(Fluid fluid);
+
+    /**
+     * Get the {@link FluidBehaviour} for a specific fluid state.
+     * @param fluid The fluid.
+     * @return The {@link FluidBehaviour} for the provided fluid state.
+     * @see #get(Fluid)
+     */
+    default FluidBehaviour get(FluidState fluid) {
+        return get(fluid.getFluid());
+    }
 
     /**
      * Check if the provided fluid is registered.
