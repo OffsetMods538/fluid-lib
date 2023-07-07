@@ -53,9 +53,4 @@ public final class FluidLibTags {
      * Add your fluid to this tag to make entities drown while in your fluid.
      */
     public static final TagKey<Fluid> ALLOWS_DROWNING = TagKey.of(RegistryKeys.FLUID, id("allows_drowning"));
-
-    /**
-     * Add your fluid to this tag to make entities able to swim while in your fluid.
-     */
-    public static final TagKey<Fluid> ALLOWS_SWIMMING = TagKey.of(RegistryKeys.FLUID, id("allows_swimming"));
 }
