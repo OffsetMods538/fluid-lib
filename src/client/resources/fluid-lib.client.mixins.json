@@ -5,8 +5,7 @@
     "client": [
         "BackgroundRendererMixin",
         "InGameHudMixin",
-        "InGameOverlayRendererMixin",
-        "accessor.BackgroundRendererAccessor"
+        "InGameOverlayRendererMixin"
     ],
     "injectors": {
         "defaultRequire": 1
