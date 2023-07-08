@@ -16,12 +16,13 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import top.offsetmonkey538.fluidlib.access.EntityAccess;
 import top.offsetmonkey538.fluidlib.api.IFluidBehaviour;
 import top.offsetmonkey538.fluidlib.api.FluidBehaviourRegistry;
 import top.offsetmonkey538.fluidlib.impl.FluidBehaviourRegistryImpl;
 
 @Mixin(Entity.class)
-public abstract class EntityMixin {
+public abstract class EntityMixin implements EntityAccess {
 
     @Shadow public abstract World getWorld();
 
@@ -52,14 +53,14 @@ public abstract class EntityMixin {
                 behaviour.collisionTick(entity);
                 fallDistance = 0;
 
-                if (fluidlib$collidedFluids.contains(behaviour)) return;
+                if (hasCollidedWith(behaviour)) return;
                 fluidlib$collidedFluids.add(behaviour);
                 behaviour.onEnter(entity);
 
                 return;
             }
 
-            if (!fluidlib$collidedFluids.contains(behaviour)) return;
+            if (!hasCollidedWith(behaviour)) return;
 
             fluidlib$collidedFluids.remove(behaviour);
             behaviour.onExit(entity);
@@ -77,7 +78,7 @@ public abstract class EntityMixin {
         final boolean[] returnValue = {false};
 
         ((FluidBehaviourRegistryImpl) FluidBehaviourRegistry.INSTANCE).forEach((fluid, behaviour) -> {
-            if (!fluidlib$collidedFluids.contains(behaviour)) return;
+            if (!hasCollidedWith(behaviour)) return;
             if (!behaviour.canSwim((Entity) (Object) this)) return;
 
             returnValue[0] = true;
@@ -130,12 +131,17 @@ public abstract class EntityMixin {
         final boolean[] returnValue = {original};
 
         ((FluidBehaviourRegistryImpl) FluidBehaviourRegistry.INSTANCE).forEach((fluid, behaviour) -> {
-            if (!fluidlib$collidedFluids.contains(behaviour)) return;
+            if (!hasCollidedWith(behaviour)) return;
             if (!behaviour.canSwim((Entity) (Object) this)) return;
 
             returnValue[0] = true;
         });
 
         return returnValue[0];
+    }
+
+    @Override
+    public boolean hasCollidedWith(IFluidBehaviour behaviour) {
+        return fluidlib$collidedFluids.contains(behaviour);
     }
 }

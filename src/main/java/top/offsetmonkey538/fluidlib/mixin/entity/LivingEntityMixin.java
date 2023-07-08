@@ -40,7 +40,7 @@ public abstract class LivingEntityMixin extends EntityMixin {
         final boolean[] returnValue = {original};
 
         ((FluidBehaviourRegistryImpl) FluidBehaviourRegistry.INSTANCE).forEach((fluid, behaviour) -> {
-            if (!fluidlib$collidedFluids.contains(behaviour)) return;
+            if (!hasCollidedWith(behaviour)) return;
             if (!behaviour.canSwim((Entity) (Object) this)) return;
             returnValue[0] = true;
         });
@@ -79,7 +79,7 @@ public abstract class LivingEntityMixin extends EntityMixin {
        final TagKey<Fluid>[] returnValue = new TagKey[]{original};
 
        ((FluidBehaviourRegistryImpl) FluidBehaviourRegistry.INSTANCE).forEach(((fluid, fluidBehaviour) -> {
-           if (!this.fluidlib$collidedFluids.contains(fluidBehaviour)) return;
+           if (!hasCollidedWith(fluidBehaviour)) return;
            returnValue[0] = fluidBehaviour.getTagKey();
        }));
 
