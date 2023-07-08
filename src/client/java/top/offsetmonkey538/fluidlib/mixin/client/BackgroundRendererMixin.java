@@ -107,26 +107,6 @@ public abstract class BackgroundRendererMixin {
     private static void fluidlib$applyFluidFogDataModifier(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci, @Local(ordinal = 0) BackgroundRenderer.FogData fogData, @Share("hasStatusEffectFogModifier") LocalBooleanRef hasStatusEffectFogModifier) {
         if (hasStatusEffectFogModifier.get()) return;
 
-        //// Exact copy of vanilla water fog
-        //fogData.fogStart = -8.0f;
-        //fogData.fogEnd = 96.0f;
-        //if (camera.getFocusedEntity() instanceof ClientPlayerEntity entity) {
-        //    fogData.fogEnd *= Math.max(0.25f, entity.getUnderwaterVisibility());
-        //    RegistryEntry<Biome> registryEntry = entity.world.getBiome(entity.getBlockPos());
-        //    if (registryEntry.isIn(BiomeTags.HAS_CLOSER_WATER_FOG)) {
-        //        fogData.fogEnd *= 0.85f;
-        //    }
-        //}
-        //if (fogData.fogEnd > viewDistance) {
-        //    fogData.fogEnd = viewDistance;
-        //    fogData.fogShape = FogShape.CYLINDER;
-        //}
-
-        //RenderSystem.setShaderFogStart(fogData.fogStart);
-        //RenderSystem.setShaderFogEnd(fogData.fogEnd);
-        //RenderSystem.setShaderFogShape(fogData.fogShape);
-
-
         final ClientWorld world = MinecraftClient.getInstance().world;
         if (world == null) return;
 

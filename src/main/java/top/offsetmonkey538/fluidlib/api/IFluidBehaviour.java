@@ -7,7 +7,7 @@ import net.minecraft.registry.tag.TagKey;
 /**
  * Custom behaviour for a fluid. Register using the {@link FluidBehaviourRegistry}.
  */
-public interface FluidBehaviour {
+public interface IFluidBehaviour {
 
     /**
      * @return The {@link TagKey} for the fluid.

@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import top.offsetmonkey538.fluidlib.api.FluidBehaviour;
+import top.offsetmonkey538.fluidlib.api.IFluidBehaviour;
 import top.offsetmonkey538.fluidlib.api.FluidBehaviourRegistry;
 import top.offsetmonkey538.fluidlib.impl.FluidBehaviourRegistryImpl;
 
@@ -32,7 +32,7 @@ public abstract class EntityMixin {
     @Shadow public abstract double getFluidHeight(TagKey<Fluid> fluid);
 
     @Unique
-    public final List<FluidBehaviour> fluidlib$collidedFluids = new ArrayList<>();
+    public final List<IFluidBehaviour> fluidlib$collidedFluids = new ArrayList<>();
 
     @Inject(
             method = "baseTick",
@@ -113,7 +113,7 @@ public abstract class EntityMixin {
             )
     )
     private boolean fluidlib$startSwimmingIfInCustomFluid2(FluidState instance, TagKey<Fluid> tag, Operation<Boolean> original) {
-        FluidBehaviour behaviour = FluidBehaviourRegistry.INSTANCE.get(instance);
+        IFluidBehaviour behaviour = FluidBehaviourRegistry.INSTANCE.get(instance);
         if (behaviour == null || !behaviour.canSwim((Entity) (Object) this) || !instance.isIn(behaviour.getTagKey())) return original.call(instance, tag);
 
         return true;
