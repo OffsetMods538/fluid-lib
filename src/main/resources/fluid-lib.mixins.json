@@ -1,22 +1,24 @@
 {
-    "required": true,
-    "package": "top.offsetmonkey538.fluidlib.mixin",
-    "compatibilityLevel": "JAVA_17",
-    "mixins": [
-        "block.ConcretePowderBlockMixin",
-        "block.FarmlandBlockMixin",
-        "block.RespawnAnchorMixin",
-        "block.SpongeBlockMixin",
-        "block.SpreadableBlockMixin",
-        "block.coral.CoralBlockBlockMixin",
-        "block.coral.CoralParentBlockMixin",
-        "block.dispenser.BoatDispenserBehaviorMixin",
-        "entity.BoatEntityMixin",
-        "entity.EntityMixin",
-        "entity.LivingEntityMixin",
-        "entity.PlayerEntityMixin"
-    ],
-    "injectors": {
-        "defaultRequire": 1
+  "required": true,
+  "package": "top.offsetmonkey538.fluidlib.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "block.ConcretePowderBlockMixin",
+    "block.FarmlandBlockMixin",
+    "block.RespawnAnchorMixin",
+    "block.SpongeBlockMixin",
+    "block.SpreadableBlockMixin",
+    "block.coral.CoralBlockBlockMixin",
+    "block.coral.CoralParentBlockMixin",
+    "block.dispenser.BoatDispenserBehaviorMixin",
+    "entity.BoatEntityMixin",
+    "entity.EntityMixin",
+    "entity.LivingEntityMixin",
+    "entity.PlayerEntityMixin",
+    "entity.ai.goal.SlimeEntitySwimmingGoal",
+    "entity.ai.goal.SwimGoalMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }
