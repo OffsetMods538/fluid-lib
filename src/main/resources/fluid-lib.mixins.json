@@ -13,6 +13,7 @@
     "block.dispenser.BoatDispenserBehaviorMixin",
     "entity.BoatEntityMixin",
     "entity.EntityMixin",
+    "entity.ItemEntityMixin",
     "entity.LivingEntityMixin",
     "entity.PlayerEntityMixin",
     "entity.ai.goal.SlimeEntitySwimmingGoal",
