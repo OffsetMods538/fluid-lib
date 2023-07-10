@@ -2,6 +2,7 @@ package top.offsetmonkey538.fluidlib.access;
 
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.registry.tag.TagKey;
 import top.offsetmonkey538.fluidlib.api.FluidBehaviourRegistry;
 import top.offsetmonkey538.fluidlib.api.IFluidBehaviour;
 import top.offsetmonkey538.fluidlib.impl.FluidBehaviourRegistryImpl;
@@ -11,6 +12,19 @@ import top.offsetmonkey538.fluidlib.impl.FluidBehaviourRegistryImpl;
  */
 public interface EntityAccess {
     boolean hasCollidedWith(IFluidBehaviour behaviour);
+
+    default boolean hasCollidedWith(TagKey<Fluid> tag) {
+        final boolean[] returnValue = {false};
+
+        ((FluidBehaviourRegistryImpl) FluidBehaviourRegistry.INSTANCE).forEach((fluid, behaviour) -> {
+            if (behaviour.getTagKey() == tag) return;
+            if (!hasCollidedWith(behaviour)) return;
+            returnValue[0] = true;
+        });
+
+        return returnValue[0];
+    }
+
     default boolean hasCollidedWith(Fluid fluid) {
         final boolean[] returnValue = {false};
 
@@ -25,7 +39,7 @@ public interface EntityAccess {
     default boolean hasCollidedWith(FluidState fluidState) {
         final boolean[] returnValue = {false};
 
-        ((FluidBehaviourRegistryImpl) FluidBehaviourRegistry.INSTANCE).forEach((fluid2, behaviour) -> {
+        ((FluidBehaviourRegistryImpl) FluidBehaviourRegistry.INSTANCE).forEach((fluid, behaviour) -> {
             if (fluidState.isIn(behaviour.getTagKey())) return;
             if (!hasCollidedWith(behaviour)) return;
             returnValue[0] = true;
