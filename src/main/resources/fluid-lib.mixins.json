@@ -18,6 +18,7 @@
     "entity.ItemEntityMixin",
     "entity.LivingEntityMixin",
     "entity.PlayerEntityMixin",
+    "entity.ZombieEntityMixin",
     "entity.ai.goal.SlimeEntitySwimmingGoal",
     "entity.ai.goal.SwimGoalMixin",
     "entity.ai.task.StayAboveWaterTaskMixin"
