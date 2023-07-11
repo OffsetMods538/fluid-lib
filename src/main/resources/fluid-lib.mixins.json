@@ -3,9 +3,11 @@
   "package": "top.offsetmonkey538.fluidlib.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "block.AbstractBlockMixin",
     "block.ConcretePowderBlockMixin",
     "block.FarmlandBlockMixin",
     "block.RespawnAnchorMixin",
+    "block.SlabBlockMixin",
     "block.SpongeBlockMixin",
     "block.SpreadableBlockMixin",
     "block.coral.CoralBlockBlockMixin",
@@ -17,7 +19,8 @@
     "entity.LivingEntityMixin",
     "entity.PlayerEntityMixin",
     "entity.ai.goal.SlimeEntitySwimmingGoal",
-    "entity.ai.goal.SwimGoalMixin"
+    "entity.ai.goal.SwimGoalMixin",
+    "entity.ai.task.StayAboveWaterTaskMixin"
   ],
   "injectors": {
     "defaultRequire": 1
