@@ -28,7 +28,7 @@ jobs:
           job-id: ${{ matrix.java }}
           arguments: build
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Build Artifacts
           path: build/libs
